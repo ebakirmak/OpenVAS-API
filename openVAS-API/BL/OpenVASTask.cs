@@ -132,7 +132,7 @@ namespace openVAS_API.BL
             return "";
         }
 
-        //Report Guid was finded
+        //Task Report Guid was finded
         public static string GetReportGuid(OpenVASManager manager, Guid taskGuid)
         {
             List<string> listReportGuid = new List<string>();
@@ -160,16 +160,18 @@ namespace openVAS_API.BL
             return listReportGuid.ElementAt(selectReport - 1);
         }
 
-        //Selected report was showed
+        //Selected  Task report was showed
         public static void GetTaskReports(OpenVASManager manager, Guid taskGuid)
         {
 
             string reportGuid = GetReportGuid(manager, taskGuid);
             XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
-            Console.WriteLine(taskDetail.ToString());
+            XElement firstChild = taskDetail.Root.Elements().First();
+            
+            //taskDetail.Root.Parent.Remove();
             string strPath = Environment.GetFolderPath(
                          System.Environment.SpecialFolder.DesktopDirectory);
-            System.IO.File.WriteAllText(strPath + "\\openvasReport.txt", taskDetail.ToString());
+            firstChild.Save(strPath + "\\openvasReport.txt");
         }
     }
 }
