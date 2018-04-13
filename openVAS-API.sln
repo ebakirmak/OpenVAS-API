@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "openVAS-API", "openVAS-API\openVAS-API.csproj", "{4CC721D5-69B0-423D-9333-F0A781247047}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenVAS", "OpenVAS\OpenVAS.csproj", "{010C078F-A5E3-4CA5-89B0-9B2356A0FBD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CC721D5-69B0-423D-9333-F0A781247047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC721D5-69B0-423D-9333-F0A781247047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC721D5-69B0-423D-9333-F0A781247047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC721D5-69B0-423D-9333-F0A781247047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010C078F-A5E3-4CA5-89B0-9B2356A0FBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010C078F-A5E3-4CA5-89B0-9B2356A0FBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010C078F-A5E3-4CA5-89B0-9B2356A0FBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010C078F-A5E3-4CA5-89B0-9B2356A0FBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E135442-864F-4A0C-AD21-995EDFC0E790}
+	EndGlobalSection
+EndGlobal

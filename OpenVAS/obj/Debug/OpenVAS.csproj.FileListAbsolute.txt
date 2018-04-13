@@ -1,0 +1,12 @@
+c:\users\emreakirmak\source\repos\openVAS-API\OpenVAS\obj\Debug\OpenVAS.csproj.CoreCompileInputs.cache
+C:\Users\emreakirmak\source\repos\openVAS-API\OpenVAS\obj\Debug\OpenVAS.csprojResolveAssemblyReference.cache
+C:\Users\emreakirmak\source\repos\openVAS-API\OpenVAS\bin\Debug\OpenVAS.dll
+C:\Users\emreakirmak\source\repos\openVAS-API\OpenVAS\bin\Debug\OpenVAS.pdb
+C:\Users\emreakirmak\source\repos\openVAS-API\OpenVAS\obj\Debug\OpenVAS.dll
+C:\Users\emreakirmak\source\repos\openVAS-API\OpenVAS\obj\Debug\OpenVAS.pdb
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\bin\Debug\OpenVAS.dll
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\bin\Debug\OpenVAS.pdb
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\obj\Debug\OpenVAS.csprojResolveAssemblyReference.cache
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\obj\Debug\OpenVAS.csproj.CoreCompileInputs.cache
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\obj\Debug\OpenVAS.dll
+C:\Users\emreakirmak\Desktop\openVAS-API\OpenVAS\obj\Debug\OpenVAS.pdb
