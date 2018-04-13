@@ -26,7 +26,8 @@ namespace openVAS_API
 
         public static void Main(string[] args)
         {
-            using (OpenVASSession session = new OpenVASSession("admin", "admin", "188.166.111.142", 9390))
+            string remote_server_ip = "";
+            using (OpenVASSession session = new OpenVASSession("admin", "admin", remote_server_ip, 9390))
             {
                 using (OpenVASManager manager = new OpenVASManager(session))
                 {
