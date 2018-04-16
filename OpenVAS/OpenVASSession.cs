@@ -219,5 +219,49 @@ namespace OpenVAS
             }
         }
 
+        /*
+         * Servisin çalışıp çalışmadığını test eder.
+         * 
+         */
+        public  void TestStream()
+        {
+           
+                TcpClient c;
+                try
+                {
+                    c = new TcpClient(this.ServerIPAddress.ToString(), this.ServerPort);
+
+                if (c.Connected)
+                    Console.WriteLine("***Connection was established.***");
+                else
+                    Console.WriteLine("***Connection was not established.***");
+                
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Service isn't running on Server \n" + ex.Message);
+                    return;
+                    //throw;
+                }
+
+                //SslStream s;
+                //try
+                //{
+                //    s = new SslStream(c.GetStream(), false, new RemoteCertificateValidationCallback(ValidateServerCertificate),
+                //        (sender, targetHost, localCertificates, remoteCertificate, acceptableIssuers) => null);
+
+                //    s.AuthenticateAsClient("OpenVAS", null, System.Security.Authentication.SslProtocols.Tls, false);
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine("Connection blocked due to Firewall. Error message is \" " + ex.Message + " \" ");
+                //    return;
+                //}
+
+                //_stream = s;
+            
+        }
     }
 }

@@ -10,16 +10,22 @@ namespace openVAS_API.BL
 {
    public static class BLPort
     {
-        //Create Port List
+        /*
+         * Parametre olarak alınan targetPorts aralığında Port List oluşturulur. Örneğin 80 ile 8088 arasındaki portlar taransması için '80-8088'  girilir.
+         * Oluşturulan Port List'in ID döndürülür ve bu ID yeni Task'ın Target Port'u olarak kullanılır.
+         * 
+         */
         public static string CreatePort(OpenVASManager manager, string targetPorts)
-        {
-           
+        {           
             XDocument targetPortsXML = manager.CreateSimplePort("C# Ports -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
             string targetPortsID = targetPortsXML.Root.Attribute("id").Value;
             return targetPortsID;
         }
 
-        //Port List was listed.
+        /*
+         * Kayıtlı olan ve bizim oluşturduğumuz Port Listeleri listelenir.All TCP, All TCP and Nmap 5.51 top 100 UDP ve C# Ports -- xxxx.xxxx.xxxx.xxxx
+         * 
+         */
         public static void ListPorts(OpenVASManager manager)
         {
             int i = 0;
@@ -34,35 +40,13 @@ namespace openVAS_API.BL
             }
         }
 
-        //Port List was selected
-        public static string SelectPort(OpenVASManager manager)
-        {
-            bool tmp = false;
-            string portList = "";
-            do
-            {
-                Console.Write("İlgili Port için ID girmeniz yeterlidir: ");
-                portList = Console.ReadLine();
-                int portListID = 0;
-                if (int.TryParse(portList, out portListID))
-                {
-                    tmp = true;
-                    return Convert.ToString(portListID);
-                }
-                else
-                {
-                    Console.WriteLine("Lütfen deðeri kontrol ediniz.");
-                }
-            } while (tmp == false);
 
 
-
-            return "1";
-
-        }
-
-        //Port List was got
-        public static string GetPortGuid(OpenVASManager manager,int key)
+        /*
+         * Seçilen Port List'in ID döndürülür. (Key, Terminal ekranında 'İlgili Port için ID girmeniz yeterlidir:' kısmında girilen değerdir.)
+         * 
+         */
+        public static string GetPortID(OpenVASManager manager,int key)
         {
            
 

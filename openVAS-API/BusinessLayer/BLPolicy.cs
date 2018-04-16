@@ -10,7 +10,11 @@ namespace openVAS_API.BL
 {
     public static class BLPolicy
     {
-        //Policys were listed.
+        /*
+         * Policy/Config Listelenir. Policy tarama ayarıdır. Full and Fast gibi seçenekleri mevcuttur.
+         * 
+         */
+         
         public static void ListPolicys(OpenVASManager manager)
         {
             int i = 0;
@@ -25,9 +29,12 @@ namespace openVAS_API.BL
             }
         }
 
-       
 
-        //Policy was got.
+
+       /*
+        * Parametrede yer alan key sırasındaki ilgili Policy'nin ID değerini döndürür. 
+        * 
+        */
         public static string GetPolicyGUID(OpenVASManager manager, int key)
         {     
 
@@ -50,5 +57,6 @@ namespace openVAS_API.BL
             }
             return "0";
         }
+
     }
 }

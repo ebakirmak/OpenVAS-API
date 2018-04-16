@@ -9,22 +9,28 @@ using System.Threading.Tasks;
 namespace openVAS_API.PresentationLayer
 {
     /*
-     * Bu sınıf, Policy ayarları için sunum işlemlerini gören sınıftır.
+     * Bu sınıf, Policy ayarları için sunum işlemlerini gerçekleştirir.
      * 
      */
     public class PLPolicy
     {
+        /*
+         * Policy'ler listelenir. Policy Seçilir. Seçilen Policy'nin id değeri döndürülür.
+         * 
+         */ 
         public static string GetPolicyGUID(OpenVASManager manager)
         {
             BLPolicy.ListPolicys(manager);
 
             int key = SelectPolicy(manager);
-
-            //Set Policy UUID              
+                        
             return BLPolicy.GetPolicyGUID(manager,key);
         }
 
-        //Policy was selected.
+        /*
+         * Policy seçilir.
+         * 
+         */ 
         private  static int SelectPolicy(OpenVASManager manager)
         {
             bool tmp = false;

@@ -31,13 +31,15 @@ namespace openVAS_API.PresentationLayer
 
                 //Port Create or Select
                 if (portChange.ToUpper() == "E")
-                    targetPortGuid = PLPort.SetTargetPorts(manager);
+                    targetPortGuid = PLPort.CreatePortList(manager);
                 else if (portChange.ToUpper() == "H")
                     targetPortGuid = PLPort.GetPortGUID(manager);
             } while (portChange.ToUpper() != "E" && portChange.ToUpper() != "H");
 
             //Set Target
-            return BLTarget.CreateTarget(manager, new Guid(targetPortGuid));
+            Console.WriteLine("Hedef IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
+            string ipTargets = Console.ReadLine();
+            return BLTarget.CreateTarget(manager, new Guid(targetPortGuid), ipTargets );
         }
     }
 }

@@ -11,10 +11,13 @@ namespace openVAS_API.PresentationLayer
     public class PLTask
     {
 
-
+        /*
+         * Tasklar listelenir.
+         * 
+         */ 
         public static void ListTasks(OpenVASManager manager)
         {
-            Console.Write("\nTask Seçiniz.\n");
+            Console.Write("\nTask Listesi:\n");
             BLTask.ListTasks(manager);
      
         }
@@ -25,6 +28,7 @@ namespace openVAS_API.PresentationLayer
         */
         public static string SelectTask(OpenVASManager manager)
         {
+          
             bool tmp = false;
             string taskContent = "";
             do

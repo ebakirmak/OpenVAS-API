@@ -27,14 +27,11 @@ namespace openVAS_API
 
         public static void Main(string[] args)
         {
-            string remote_server_ip = "";        
+            string remote_server_ip = "188.166.111.142";        
             using (OpenVASSession session = new OpenVASSession("admin", "admin", remote_server_ip, 9390))
             {
                 using (OpenVASManager manager = new OpenVASManager(session))
                 {
-
-
-
                     if (session.Stream != null && session.Username != null && session.Password != null)
                     {
                         string change;
@@ -45,6 +42,7 @@ namespace openVAS_API
                                             "* Raporları getirmek için 'R' basınız. \n" +
                                             "* Yeni bir tarama için 'T' basınız.\n" +
                                             "* OpenVAS Management Protocol Versiyonu İçin 'V' basınız.\n"+
+                                            "* Test için 'E' basınız.\n" +
                                             "* Çıkış için 'Q' basınız.\n");
 
                             Console.Write("Seçim: ");
@@ -52,35 +50,30 @@ namespace openVAS_API
 
                             if (change.ToUpper() == "T")
                             {
-                                BLTask.CreateTask(session, manager,new Guid(PLPolicy.GetPolicyGUID(manager)),new Guid(PLTarget.GetTargetGUID(manager)));
+                                BLTask.CreateTask(session, manager, new Guid(PLPolicy.GetPolicyGUID(manager)), new Guid(PLTarget.GetTargetGUID(manager)));
                             }
                             else if (change.ToUpper() == "R")
                             {
-                                PLTask.ListTasks(manager);                               
+                                PLTask.ListTasks(manager);
                                 Console.Write("\nRapor Seçiniz.\n");
                                 BLTask.GetTaskReports(manager, new Guid(BLTask.GetTaskGuid(manager, Convert.ToInt32(PLTask.SelectTask(manager)))));
                             }
                             else if (change.ToUpper() == "V")
                                 Console.WriteLine(manager.GetVersion());
+                            else if (change.ToUpper() == "E")
+                                session.TestStream();
                             else if (change.ToUpper() != "Q")
                                 Console.WriteLine("Geçersiz işlem. Tekrar Deneyiniz.");
                      
 
                         } while (change.ToUpper() != "Q");
 
-
                     }
                 }
                 Console.Write("İşlem sonlandırıldı.");
                 Console.ReadLine();
             }
+        }    
 
-
-        }
-
-
-       
-
-      
-    }
+      }
 }
