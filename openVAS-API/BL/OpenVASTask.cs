@@ -167,11 +167,12 @@ namespace openVAS_API.BL
             string reportGuid = GetReportGuid(manager, taskGuid);
             XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
             XElement firstChild = taskDetail.Root.Elements().First();
-            
+            //Console.WriteLine(firstChild.ToString());
             //taskDetail.Root.Parent.Remove();
             string strPath = Environment.GetFolderPath(
                          System.Environment.SpecialFolder.DesktopDirectory);
-            firstChild.Save(strPath + "\\openvasReport.txt");
+            //FirstChild.Save(strPath + "\\openvasReport.txt");
+            System.IO.File.WriteAllText(strPath + "\\openvasReport.txt", firstChild.ToString());
         }
     }
 }
