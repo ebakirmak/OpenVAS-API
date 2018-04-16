@@ -43,6 +43,7 @@ namespace openVAS_API
                                             "\nAşağıdaki işlemlerden birini seçiniz. \n" +
                                             "* Raporları getirmek için 'R' basınız. \n" +
                                             "* Yeni bir tarama için 'T' basınız.\n" +
+                                            "* OpenVAS Management Protocol Versiyonu İçin 'V' basınız.\n"+
                                             "* Çıkış için 'Q' basınız.\n");
 
                             Console.Write("Seçim: ");
@@ -62,8 +63,11 @@ namespace openVAS_API
                                 Console.Write("\nReport Seçiniz.\n");
                                 OpenVASTask.GetTaskReports(manager, new Guid(taskGuid));
                             }
+                            else if (change.ToUpper() == "V")
+                                Console.WriteLine(manager.GetVersion());
                             else if (change.ToUpper() != "Q")
                                 Console.WriteLine("Geçersiz işlem. Tekrar Deneyiniz.");
+                     
 
                         } while (change.ToUpper() != "Q");
 
@@ -76,5 +80,7 @@ namespace openVAS_API
 
 
         }
+
+      
     }
 }

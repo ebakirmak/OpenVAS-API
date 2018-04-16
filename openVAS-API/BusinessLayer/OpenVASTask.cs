@@ -9,15 +9,20 @@ using System.Xml.Linq;
 
 namespace openVAS_API.BL
 {
+    /*
+     * Bu sınıf Task işlemlerinin gerçekleştirildiği İş Katmanı sınıfıdır.
+     * 
+     */
     public static class OpenVASTask
     {
-
-
-
-        //Create Task/Scan
+        /*
+         * Yeni bir task oluşturulur.
+         * 
+         */
         public static void CreateTask(OpenVASSession session, OpenVASManager manager)
         {
-            //Set Policy UUID            
+            //Set Policy UUID  
+            
             string policyGuid = OpenVASPolicy.GetPolicy(manager);
             string portChange = "";
             string targetPortGuid="";
@@ -63,7 +68,10 @@ namespace openVAS_API.BL
 
         }
 
-        //Tasks were showed.
+        /*
+         * Tasklar listelenir.
+         * 
+         */
         public static void ListTasks(OpenVASManager manager)
         {
             int counter = 0;
@@ -79,7 +87,10 @@ namespace openVAS_API.BL
 
         }
 
-        //Task was selected
+        /*
+         * Task seçilir.
+         * 
+         */
         public static string SelectTask(OpenVASManager manager)
         {
             bool tmp = false;
@@ -106,7 +117,10 @@ namespace openVAS_API.BL
 
         }
 
-        //Task Guid was finded
+        /*
+         * Seçilen taskın  GUID (Globally Unique Identifier) değerini döndürür.
+         * 
+         */
         public static string GetTaskGuid(OpenVASManager manager, int key)
         {
             int counter = 0;
@@ -132,14 +146,17 @@ namespace openVAS_API.BL
             return "";
         }
 
-        //Task Report Guid was finded
-        public static string GetReportGuid(OpenVASManager manager, Guid taskGuid)
+        /*
+         * Parametre olarak aldığı taskGUID'nin içerdiği ReportGUID'leri döndürür.
+         * 
+         */
+        private static string GetReportGuid(OpenVASManager manager, Guid taskGUID)
         {
             List<string> listReportGuid = new List<string>();
 
             string tmp = "";
             int counter = 1;
-            XDocument tasks = manager.GetTasks(taskGuid);
+            XDocument tasks = manager.GetTasks(taskGUID);
             foreach (XElement task in tasks.Descendants(XName.Get("report")))
             {
 
@@ -160,11 +177,14 @@ namespace openVAS_API.BL
             return listReportGuid.ElementAt(selectReport - 1);
         }
 
-        //Selected  Task report was showed
-        public static void GetTaskReports(OpenVASManager manager, Guid taskGuid)
+        /*
+         * Parametre olarak aldığı taskGUID'nin
+         * 
+         */
+        public static void GetTaskReports(OpenVASManager manager, Guid taskGUID)
         {
 
-            string reportGuid = GetReportGuid(manager, taskGuid);
+            string reportGuid = GetReportGuid(manager, taskGUID);
             XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
             XElement firstChild = taskDetail.Root.Elements().First();
             //Console.WriteLine(firstChild.ToString());

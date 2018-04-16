@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\OpenVASPort.cs" />
-    <Compile Include="BL\OpenVASTarget.cs" />
-    <Compile Include="BL\OpenVASTask.cs" />
-    <Compile Include="BL\OpenVASPolicy.cs" />
+    <Compile Include="BusinessLayer\OpenVASPort.cs" />
+    <Compile Include="BusinessLayer\OpenVASTarget.cs" />
+    <Compile Include="BusinessLayer\OpenVASTask.cs" />
+    <Compile Include="BusinessLayer\OpenVASPolicy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,6 +57,9 @@
       <Project>{010c078f-a5e3-4ca5-89b0-9b2356a0fbd1}</Project>
       <Name>OpenVAS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PresentationLayer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

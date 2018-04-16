@@ -11,8 +11,13 @@ using System.Xml.Linq;
 
 namespace OpenVAS
 {
+
+    //This class is the class for OpenVAS in which the authorization operations are performed.
+    //Bu sınıf OpenVAS için yetkilendirme ve okuma-yazma işlemlerinin gerçekleştirildiği sınıftır.
+
     public class OpenVASSession : IDisposable
     {
+       
         private SslStream _stream;
 
         public string Username { get; set; }
@@ -22,29 +27,6 @@ namespace OpenVAS
         public IPAddress ServerIPAddress { get; set; }
 
         public int ServerPort { get; set; }
-
-
-        public OpenVASSession(string host, int port = 9390)
-        {
-            this.ServerIPAddress = IPAddress.Parse(host);
-            this.ServerPort = port;
-            this.Username = null;
-            this.Password = null;
-        }
-
-        public OpenVASSession(string username, string password, string host, int port = 9390)
-        {
-            this.ServerIPAddress = IPAddress.Parse(host);
-            this.ServerPort = port;
-            if (this.Authenticate(username, password) == false)
-            {
-                Username = null;
-                Password = null;
-            }
-        }
-
-    
-
 
         public SslStream Stream
         {
@@ -63,6 +45,23 @@ namespace OpenVAS
 
         }
 
+
+       
+        public OpenVASSession(string username, string password, string host, int port = 9390)
+        {
+            this.ServerIPAddress = IPAddress.Parse(host);
+            this.ServerPort = port;
+            if (this.Authenticate(username, password) == false)
+            {
+                Username = null;
+                Password = null;
+            }
+        }   
+
+
+       
+        //Bu Fonksiyon ile, OpenVAS'a giriş işlemi gerçekleştirilir.
+        //With this function, To Openvas is performed login operation.
         public bool Authenticate(string username, string password)
         {
             ASCIIEncoding enc = new ASCIIEncoding();
@@ -106,6 +105,8 @@ namespace OpenVAS
             return true;
         }
 
+        //Bu fonksiyon ile, OpenVAS Protokol (API) komutları (request) gönderilir ve cevabı (response) okunur.
+        //With this function, OpenVAS Protokol (API) commands (request) is sent and response is read.
         public XDocument ExecuteCommand(XDocument doc, bool requiresAuthentication = false)
         {
             ASCIIEncoding enc = new ASCIIEncoding();
@@ -139,6 +140,7 @@ namespace OpenVAS
                 throw ex;
             }
         }
+
 
         private void GetStream()
         {
