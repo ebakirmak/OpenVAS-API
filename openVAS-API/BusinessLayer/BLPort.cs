@@ -16,10 +16,18 @@ namespace openVAS_API.BL
          * 
          */
         public static string CreatePort(OpenVASManager manager, string targetPorts)
-        {           
-            XDocument targetPortsXML = manager.CreateSimplePort("C# Ports -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
-            string targetPortsID = targetPortsXML.Root.Attribute("id").Value;
-            return targetPortsID;
+        {
+            try
+            {
+                XDocument targetPortsXML = manager.CreateSimplePort("C# Ports -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
+                string targetPortsID = targetPortsXML.Root.Attribute("id").Value;
+                return targetPortsID;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
         }
 
         /*

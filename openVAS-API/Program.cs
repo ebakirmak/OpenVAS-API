@@ -35,6 +35,7 @@ namespace openVAS_API
                     if (session.Stream != null && session.Username != null && session.Password != null)
                     {
                         string change;
+                        bool isReport = true;
                         do
                         {
                             Console.Write("" +
@@ -50,13 +51,20 @@ namespace openVAS_API
 
                             if (change.ToUpper() == "T")
                             {
-                                BLTask.CreateTask(session, manager, new Guid(PLPolicy.GetPolicyGUID(manager)), new Guid(PLTarget.GetTargetGUID(manager)));
+                                PLTask.CreateTask(manager);
                             }
                             else if (change.ToUpper() == "R")
                             {
                                 PLTask.ListTasks(manager);
                                 Console.Write("\nRapor Seçiniz.\n");
-                                BLTask.GetTaskReports(manager, new Guid(BLTask.GetTaskGuid(manager, Convert.ToInt32(PLTask.SelectTask(manager)))));
+                                string ReportGUID = BLTask.GetTaskGuid(manager, Convert.ToInt32(PLTask.SelectTask(manager)));
+                                if (ReportGUID == "0")
+                                    Console.WriteLine("İlgili Task bulunamadı...");
+                                else
+                                    isReport = BLTask.GetTaskReports(manager, new Guid(ReportGUID));
+
+                                if (!isReport)
+                                    Console.Write("İlgili Rapor Bulunamadı. Girilen değeri kontrol ediniz.\n");
                             }
                             else if (change.ToUpper() == "V")
                                 Console.WriteLine(manager.GetVersion());

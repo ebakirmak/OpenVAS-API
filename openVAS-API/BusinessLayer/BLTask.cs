@@ -19,7 +19,7 @@ namespace openVAS_API.BL
          * Yeni bir task oluşturulur.
          * 
          */
-        public static void CreateTask(OpenVASSession session, OpenVASManager manager, Guid policyID, Guid targetID)
+        public static void CreateTask(OpenVASManager manager, Guid policyID, Guid targetID)
         {         
       
             //Set Task
@@ -90,7 +90,7 @@ namespace openVAS_API.BL
 
                 }
             }
-            return "";
+            return "0";
         }
 
         /*
@@ -128,7 +128,10 @@ namespace openVAS_API.BL
         {
             Console.Write("Seçmek istediğiniz rapor numarası giriniz. (1,2 vb) :");
             int selectReport = Convert.ToInt32(Console.ReadLine());
-            return listReportGuid.ElementAt(selectReport - 1);
+            if (listReportGuid.Count >= selectReport)
+                return listReportGuid.ElementAt(selectReport - 1);
+            else
+                return "0";
         }
 
 
@@ -136,18 +139,27 @@ namespace openVAS_API.BL
          * Parametre olarak aldığı taskGUID'nin
          * 
          */
-        public static void GetTaskReports(OpenVASManager manager, Guid taskGUID)
+        public static bool GetTaskReports(OpenVASManager manager, Guid taskGUID)
         {
            
             string reportGuid = GetReportGUID(ListReports(manager, taskGUID));
-            XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
-            XElement firstChild = taskDetail.Root.Elements().First();
-            //Console.WriteLine(firstChild.ToString());
-            //taskDetail.Root.Parent.Remove();
-            string strPath = Environment.GetFolderPath(
-                         System.Environment.SpecialFolder.DesktopDirectory);
-            //FirstChild.Save(strPath + "\\openvasReport.txt");
-            System.IO.File.WriteAllText(strPath + "\\openvasReport.txt", firstChild.ToString());
+            if(reportGuid != "0")
+            {
+                XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
+                XElement firstChild = taskDetail.Root.Elements().First();
+                //Console.WriteLine(firstChild.ToString());
+                //taskDetail.Root.Parent.Remove();
+                string strPath = Environment.GetFolderPath(
+                             System.Environment.SpecialFolder.DesktopDirectory);
+                //FirstChild.Save(strPath + "\\openvasReport.txt");
+                System.IO.File.WriteAllText(strPath + "\\openvasReport.txt", firstChild.ToString());
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+               
         }
     }
 }

@@ -18,3 +18,13 @@ C:\Users\emreakirmak\Desktop\openVAS-API\openVAS-API\obj\Debug\openVAS-API.cspro
 C:\Users\emreakirmak\Desktop\openVAS-API\openVAS-API\obj\Debug\openVAS-API.csproj.CopyComplete
 C:\Users\emreakirmak\Desktop\openVAS-API\openVAS-API\obj\Debug\openVAS-API.exe
 C:\Users\emreakirmak\Desktop\openVAS-API\openVAS-API\obj\Debug\openVAS-API.pdb
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\bin\Debug\openVAS-API.exe.config
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\bin\Debug\openVAS-API.exe
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\bin\Debug\openVAS-API.pdb
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\bin\Debug\OpenVAS.dll
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\bin\Debug\OpenVAS.pdb
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\obj\Debug\openVAS-API.csprojResolveAssemblyReference.cache
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\obj\Debug\openVAS-API.csproj.CoreCompileInputs.cache
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\obj\Debug\openVAS-API.csproj.CopyComplete
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\obj\Debug\openVAS-API.exe
+C:\Users\emreakirmak\Desktop\Emre\Projects\openvas-all\openvas-protocol-v4.16\openVAS-API\openVAS-API\obj\Debug\openVAS-API.pdb

@@ -12,6 +12,29 @@ namespace openVAS_API.PresentationLayer
     {
 
         /*
+         * Task yaratılır.
+         * 
+         */
+         public static bool CreateTask(OpenVASManager manager)
+        {
+            string PolicyGUID = PLPolicy.GetPolicyGUID(manager);
+            if(PolicyGUID == "0")
+            {
+                Console.WriteLine("Geçersiz Policy değeri girdiniz.");
+                return false;
+            }
+            string TargetGUID = PLTarget.GetTargetGUID(manager);
+            if(TargetGUID == "0")
+            {
+                Console.WriteLine("İşlem İptal Edildi. Task oluşturulmadı.");
+                return false;
+            }
+            BLTask.CreateTask(manager, new Guid(PolicyGUID), new Guid(TargetGUID));
+            return true;
+        }
+
+
+        /*
          * Tasklar listelenir.
          * 
          */ 

@@ -20,8 +20,15 @@ namespace openVAS_API.PresentationLayer
          */ 
         public static string CreatePortList(OpenVASManager manager)
         {
-            Console.WriteLine("Hedef Port adreslerini giriniz. -- 1-1000, 1005-1100 -- veya -- 1-65535 -- gibi.");           
-            return BLPort.CreatePort(manager, "T: " + Convert.ToString(Console.ReadLine()));
+            Console.WriteLine("Hedef Port adreslerini giriniz. -- 1-1000, 1005-1100 -- veya -- 1-65535 -- gibi.");
+            //Parse tool can write...           
+            string portGUID = BLPort.CreatePort(manager, "T: " + Convert.ToString(Console.ReadLine()));
+            if (portGUID == null)
+                Console.Write("Port List hatalı girildi...\n");
+            else
+                return portGUID;
+
+            return null;
         }
        
         /*
