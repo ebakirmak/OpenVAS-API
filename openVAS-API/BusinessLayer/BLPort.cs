@@ -8,13 +8,12 @@ using System.Xml.Linq;
 
 namespace openVAS_API.BL
 {
-   public static class OpenVASPort
+   public static class BLPort
     {
         //Create Port List
-        public static string CreatePort(OpenVASManager manager)
+        public static string CreatePort(OpenVASManager manager, string targetPorts)
         {
-            Console.WriteLine("Hedef Port adreslerini giriniz. -- 1-1000, 1005-1100 -- veya -- 1-65535 -- gibi.");
-            string targetPorts = "T: " + Convert.ToString(Console.ReadLine());
+           
             XDocument targetPortsXML = manager.CreateSimplePort("C# Ports -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
             string targetPortsID = targetPortsXML.Root.Attribute("id").Value;
             return targetPortsID;
@@ -63,14 +62,11 @@ namespace openVAS_API.BL
         }
 
         //Port List was got
-        public static string GetPortGuid(OpenVASManager manager)
+        public static string GetPortGuid(OpenVASManager manager,int key)
         {
-            //List Policys
-            ListPorts(manager);
+           
 
 
-            //Select Policy ID
-            int key = Convert.ToInt32(SelectPort(manager));
 
 
             string portListGuid = "";

@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace openVAS_API.BL
 {
-    public static class OpenVASTarget
+    public static class BLTarget
     {
         // Create Target
         public static string CreateTarget(OpenVASManager manager, Guid portListID)

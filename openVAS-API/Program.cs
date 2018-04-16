@@ -1,5 +1,6 @@
 ﻿using OpenVAS;
 using openVAS_API.BL;
+using openVAS_API.PresentationLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace openVAS_API
 
         public static void Main(string[] args)
         {
-            string remote_server_ip = "167.99.88.150";
+            string remote_server_ip = "";        
             using (OpenVASSession session = new OpenVASSession("admin", "admin", remote_server_ip, 9390))
             {
                 using (OpenVASManager manager = new OpenVASManager(session))
@@ -51,17 +52,13 @@ namespace openVAS_API
 
                             if (change.ToUpper() == "T")
                             {
-                                OpenVASTask.CreateTask(session, manager);
+                                BLTask.CreateTask(session, manager,new Guid(PLPolicy.GetPolicyGUID(manager)),new Guid(PLTarget.GetTargetGUID(manager)));
                             }
                             else if (change.ToUpper() == "R")
                             {
-                                Console.Write("\nTask Seçiniz.\n");
-                                OpenVASTask.ListTasks(manager);
-                                string key = OpenVASTask.SelectTask(manager);
-                                string taskGuid = OpenVASTask.GetTaskGuid(manager, Convert.ToInt32(key));
-
-                                Console.Write("\nReport Seçiniz.\n");
-                                OpenVASTask.GetTaskReports(manager, new Guid(taskGuid));
+                                PLTask.ListTasks(manager);                               
+                                Console.Write("\nRapor Seçiniz.\n");
+                                BLTask.GetTaskReports(manager, new Guid(BLTask.GetTaskGuid(manager, Convert.ToInt32(PLTask.SelectTask(manager)))));
                             }
                             else if (change.ToUpper() == "V")
                                 Console.WriteLine(manager.GetVersion());
@@ -80,6 +77,9 @@ namespace openVAS_API
 
 
         }
+
+
+       
 
       
     }

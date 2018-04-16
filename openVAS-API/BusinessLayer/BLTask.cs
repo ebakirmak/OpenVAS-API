@@ -13,42 +13,17 @@ namespace openVAS_API.BL
      * Bu sınıf Task işlemlerinin gerçekleştirildiği İş Katmanı sınıfıdır.
      * 
      */
-    public static class OpenVASTask
+    public static class BLTask
     {
         /*
          * Yeni bir task oluşturulur.
          * 
          */
-        public static void CreateTask(OpenVASSession session, OpenVASManager manager)
-        {
-            //Set Policy UUID  
-            
-            string policyGuid = OpenVASPolicy.GetPolicy(manager);
-            string portChange = "";
-            string targetPortGuid="";
-            do
-            {
-                Console.WriteLine("Port List oluşturmak istiyor musunuz? (E/H)");
-                portChange = Console.ReadLine().ToString();
-               
-                //Port Create or Select
-                if (portChange.ToUpper() == "E")
-                    targetPortGuid = OpenVASPort.CreatePort(manager);
-                else if (portChange.ToUpper() == "H")
-                    targetPortGuid = OpenVASPort.GetPortGuid(manager);
-            } while (portChange.ToUpper() != "E" && portChange.ToUpper() != "H");
-         
-
-
-
-            //Set Target
-            string targetGuid = OpenVASTarget.CreateTarget(manager, new Guid(targetPortGuid));
-
-
-            //Set Port UUID
-
+        public static void CreateTask(OpenVASSession session, OpenVASManager manager, Guid policyID, Guid targetID)
+        {         
+      
             //Set Task
-            XDocument task = manager.CreateSimpleTask("C# Tasks - " + Guid.NewGuid().ToString(), string.Empty, new Guid(policyGuid), new Guid(targetGuid));
+            XDocument task = manager.CreateSimpleTask("C# Tasks - " + Guid.NewGuid().ToString(), string.Empty, policyID, targetID);
 
             Guid taskID = new Guid(task.Root.Attribute("id").Value);
 
@@ -87,35 +62,7 @@ namespace openVAS_API.BL
 
         }
 
-        /*
-         * Task seçilir.
-         * 
-         */
-        public static string SelectTask(OpenVASManager manager)
-        {
-            bool tmp = false;
-            string taskContent = "";
-            do
-            {
-                Console.Write("İlgili Task için ID girmeniz yeterlidir: ");
-                taskContent = Console.ReadLine();
-                int taskID = 0;
-                if (int.TryParse(taskContent, out taskID))
-                {
-                    tmp = true;
-                    return Convert.ToString(taskID);
-                }
-                else
-                {
-                    Console.WriteLine("Lütfen değeri kontrol ediniz.");
-                }
-            } while (tmp == false);
-
-
-
-            return "1";
-
-        }
+       
 
         /*
          * Seçilen taskın  GUID (Globally Unique Identifier) değerini döndürür.
@@ -147,10 +94,10 @@ namespace openVAS_API.BL
         }
 
         /*
-         * Parametre olarak aldığı taskGUID'nin içerdiği ReportGUID'leri döndürür.
+         * Parametre olarak aldığı taskGUID'nin içerdiği ReportGUID'leri listeler.
          * 
          */
-        private static string GetReportGuid(OpenVASManager manager, Guid taskGUID)
+        private static List<string> ListReports(OpenVASManager manager, Guid taskGUID)
         {
             List<string> listReportGuid = new List<string>();
 
@@ -169,13 +116,21 @@ namespace openVAS_API.BL
                 }
 
             }
+            return listReportGuid;
+          
+        }
 
+        /*
+         * İstenilen raporun GUID'sini döndürür.
+         * 
+         */
+        private static string GetReportGUID(List<string> listReportGuid)
+        {
             Console.Write("Seçmek istediğiniz rapor numarası giriniz. (1,2 vb) :");
             int selectReport = Convert.ToInt32(Console.ReadLine());
-
-
             return listReportGuid.ElementAt(selectReport - 1);
         }
+
 
         /*
          * Parametre olarak aldığı taskGUID'nin
@@ -183,8 +138,8 @@ namespace openVAS_API.BL
          */
         public static void GetTaskReports(OpenVASManager manager, Guid taskGUID)
         {
-
-            string reportGuid = GetReportGuid(manager, taskGUID);
+           
+            string reportGuid = GetReportGUID(ListReports(manager, taskGUID));
             XDocument taskDetail = manager.GetTaskReports(new Guid(reportGuid));
             XElement firstChild = taskDetail.Root.Elements().First();
             //Console.WriteLine(firstChild.ToString());

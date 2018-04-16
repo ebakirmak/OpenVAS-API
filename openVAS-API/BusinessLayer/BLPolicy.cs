@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace openVAS_API.BL
 {
-    public static class OpenVASPolicy
+    public static class BLPolicy
     {
         //Policys were listed.
         public static void ListPolicys(OpenVASManager manager)
@@ -25,44 +25,11 @@ namespace openVAS_API.BL
             }
         }
 
-        //Policy was selected.
-        public static string SelectPolicy(OpenVASManager manager)
-        {
-
-
-            bool tmp = false;
-            do
-            {
-                Console.Write("İlgili Policy için ID girmeniz yeterlidir: ");
-                string policy = Console.ReadLine();
-                int policyID = 0;
-                if (int.TryParse(policy, out policyID))
-                {
-                    tmp = true;
-                    return Convert.ToString(policyID);
-                }
-                else
-                {
-                    Console.WriteLine("Lütfen deðeri kontrol ediniz.");
-                }
-            } while (tmp == false);
-
-
-
-            return "4";
-
-
-        }
+       
 
         //Policy was got.
-        public static string GetPolicy(OpenVASManager manager)
-        {
-            //List Policys
-            ListPolicys(manager);
-
-            //Select Policy ID
-            int key = Convert.ToInt32(SelectPolicy(manager));
-
+        public static string GetPolicyGUID(OpenVASManager manager, int key)
+        {     
 
             string policy = "";
             int counter = 0;
@@ -81,7 +48,7 @@ namespace openVAS_API.BL
                 }
 
             }
-            return policy = "Full and Fast ultimate";
+            return "0";
         }
     }
 }
