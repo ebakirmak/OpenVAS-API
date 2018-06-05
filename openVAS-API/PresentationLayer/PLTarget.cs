@@ -44,20 +44,35 @@ namespace openVAS_API.PresentationLayer
 
             } while (portChange.ToUpper() != "E" && portChange.ToUpper() != "H" && targetPortGuid == null );
 
-            //Set Target
-            Console.WriteLine("Hedef IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
-            string ipTargets = Console.ReadLine();
+           
             try
-            {
-                IPAddress iPAddress = IPAddress.Parse(ipTargets);
-                return BLTarget.CreateTarget(manager, new Guid(targetPortGuid), ipTargets);
+            {   
+                //Set Target
+                Console.WriteLine("Hedef IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
+                string hostTargets = Console.ReadLine();
+                IPAddress iPAddress = IPAddress.Parse(hostTargets);
+
+                Console.WriteLine("Hariç tutulacak IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
+                string excludeTargets = Console.ReadLine();
+                IPAddress excludeIpAddress = IPAddress.Parse(excludeTargets);
+
+
+
+                return BLTarget.CreateTarget(manager, new Guid(targetPortGuid), hostTargets,excludeTargets);
             }
-            catch (Exception)
-            {
-                Console.WriteLine("IP Adress hatalı girdiniz. Kontrol ediniz.");
+            catch (Exception ex)
+                {
+                Console.WriteLine("IP Adress hatalı girdiniz. Lütfen sadece rakamla giriniz. Kontrol ediniz.\n" + ex.Message);
                 return "0";
             }
            
         }
+
+
+ 
+
+  
+
+
     }
 }

@@ -153,6 +153,7 @@ namespace openVAS_API.BL
                              System.Environment.SpecialFolder.DesktopDirectory);
                 //FirstChild.Save(strPath + "\\openvasReport.txt");
                 System.IO.File.WriteAllText(strPath + "\\openvasReport.txt", firstChild.ToString());
+                Console.WriteLine("Rapor " + strPath + " konumunda oluşturuldu");
                 return true;
             }
             else

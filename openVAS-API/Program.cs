@@ -27,8 +27,8 @@ namespace openVAS_API
 
         public static void Main(string[] args)
         {
-            string remote_server_ip = "188.166.111.142";        
-            using (OpenVASSession session = new OpenVASSession("admin", "admin", remote_server_ip, 9390))
+            string remote_server_ip = "172.17.7.221";        
+            using (OpenVASSession session = new OpenVASSession("unitmon", "unitmon", remote_server_ip, 9390))
             {
                 using (OpenVASManager manager = new OpenVASManager(session))
                 {

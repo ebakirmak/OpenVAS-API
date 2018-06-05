@@ -80,13 +80,14 @@ namespace OpenVAS
          * İstemci yeni bir hedef/target oluşturmak için create_target komutunu kullanır.
          * The client uses the create_target command to create a new target.
          */
-        public XDocument CreateSimpleTarget(string cidrRange, string targetName, Guid portListID)
+        public XDocument CreateSimpleTarget(string cidrRange, string targetName, Guid portListID,string excludeHost)
         {
 
             XDocument createTargetXML = new XDocument(
                                             new XElement("create_target",
                                                 new XElement("name", targetName),
                                                 new XElement("hosts", cidrRange),
+                                                new XElement("exclude_hosts", excludeHost),
                                                 new XElement("port_list",
                                                     new XAttribute("id", portListID.ToString()))));
 
