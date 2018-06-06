@@ -48,6 +48,7 @@
     <Compile Include="BusinessLayer\BLPolicy.cs" />
     <Compile Include="PresentationLayer\PLPolicy.cs" />
     <Compile Include="PresentationLayer\PLPort.cs" />
+    <Compile Include="PresentationLayer\PLSession.cs" />
     <Compile Include="PresentationLayer\PLTarget.cs" />
     <Compile Include="PresentationLayer\PLTask.cs" />
     <Compile Include="Program.cs" />

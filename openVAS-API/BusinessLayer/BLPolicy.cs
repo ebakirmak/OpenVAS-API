@@ -21,12 +21,34 @@ namespace openVAS_API.BL
             XDocument configs = manager.GetScanConfigurations();
             foreach (XElement node in configs.Descendants(XName.Get("name")))
             {
-                if (node.Value != "")
+                int j= 0;
+                foreach (XElement comment in configs.Descendants(XName.Get("comment")))
                 {
-                    Console.WriteLine(i + 1 + ") " + node.Value);
-                    i += 1;
+
+                    if (node.Value == "")
+                        break;
+
+                        if (i == j)
+                        {
+                            Console.WriteLine(i + 1 + ") " + node.Value + ": " + comment.Value);
+                            i += 1;
+                            break;
+                        }
+                        
+                        j += 1;                  
+                   
                 }
+               
             }
+
+
+
+
+
+
+
+
+
         }
 
 

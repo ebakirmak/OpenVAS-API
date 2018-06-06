@@ -19,12 +19,13 @@ namespace openVAS_API.BL
         {
             try
             {
-                XDocument targetPortsXML = manager.CreateSimplePort("C# Ports -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
+                XDocument targetPortsXML = manager.CreateSimplePort("Port: " + targetPorts.Split('T')[1] +"  -- " + Guid.NewGuid().ToString(), "Deneme", targetPorts);
                 string targetPortsID = targetPortsXML.Root.Attribute("id").Value;
                 return targetPortsID;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return null;
             }
             

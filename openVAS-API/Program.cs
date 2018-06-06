@@ -27,8 +27,9 @@ namespace openVAS_API
 
         public static void Main(string[] args)
         {
-            string remote_server_ip = "172.17.7.221";        
-            using (OpenVASSession session = new OpenVASSession("unitmon", "unitmon", remote_server_ip, 9390))
+            PLSession.SetIPAndPort();
+
+            using (OpenVASSession session = new OpenVASSession(PLSession.Username, PLSession.Password, PLSession.IP, PLSession.Port))
             {
                 using (OpenVASManager manager = new OpenVASManager(session))
                 {
@@ -42,7 +43,7 @@ namespace openVAS_API
                                             "\nAşağıdaki işlemlerden birini seçiniz. \n" +
                                             "* Raporları getirmek için 'R' basınız. \n" +
                                             "* Yeni bir tarama için 'T' basınız.\n" +
-                                            "* OpenVAS Management Protocol Versiyonu İçin 'V' basınız.\n"+
+                                            "* OpenVAS Management Protocol Versiyonu İçin 'V' basınız.\n" +
                                             "* Test için 'E' basınız.\n" +
                                             "* Çıkış için 'Q' basınız.\n");
 
@@ -72,7 +73,7 @@ namespace openVAS_API
                                 session.TestStream();
                             else if (change.ToUpper() != "Q")
                                 Console.WriteLine("Geçersiz işlem. Tekrar Deneyiniz.");
-                     
+
 
                         } while (change.ToUpper() != "Q");
 

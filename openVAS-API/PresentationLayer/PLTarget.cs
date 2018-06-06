@@ -50,11 +50,11 @@ namespace openVAS_API.PresentationLayer
                 //Set Target
                 Console.WriteLine("Hedef IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
                 string hostTargets = Console.ReadLine();
-                IPAddress iPAddress = IPAddress.Parse(hostTargets);
+                //IPAddress iPAddress = IPAddress.Parse(hostTargets);
 
                 Console.WriteLine("Hariç tutulacak IP adres(leri) giriniz. IP adreslerini virgül ile ayırınız.");
                 string excludeTargets = Console.ReadLine();
-                IPAddress excludeIpAddress = IPAddress.Parse(excludeTargets);
+                //IPAddress excludeIpAddress = IPAddress.Parse(excludeTargets);
 
 
 
